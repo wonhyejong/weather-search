@@ -6,6 +6,8 @@ import './areaSearch.css';
 const AreaSearch = ({setAreaInfo}) => {
     const [inputValue, setInputValue] = useState('');
 
+  
+
     useEffect(()=>{
         Geocode.setApiKey("AIzaSyBp5VvSZ482WeAIsLi-kZXThLNxyPuHO2c"); //구글키
     },[])

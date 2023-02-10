@@ -2,12 +2,21 @@ import './App.css';
 import OpenWeather from 'react-open-weather-widget';
 import 'react-open-weather-widget/lib/css/ReactWeather.css' 
 import AreaSearch from './components/AreaSearch'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 function App() {
-  const [areaInfo,setAreaInfo] = useState({
-    lat:'33.4890113',
-    lon:'126.4983023'
-  })
+  const [areaInfo,setAreaInfo] = useState(undefined)
+
+  const currentPostion = () => {
+    const positionCurrent =  navigator.geolocation.getCurrentPosition((position)=>{
+        const { latitude, longitude } = position.coords;
+        console.log(latitude,longitude)
+        setAreaInfo({ lat: String(latitude), lon: String(longitude) })
+    })
+
+}
+  useEffect(()=>{
+    currentPostion();
+  },[])
 
   return (
     <div className="App">
