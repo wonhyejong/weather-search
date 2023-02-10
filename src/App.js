@@ -1,23 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
-
+import OpenWeather from 'react-open-weather-widget';
+import 'react-open-weather-widget/lib/css/ReactWeather.css' 
+import AreaSearch from './components/AreaSearch'
+import { useState } from 'react';
 function App() {
+  const [areaInfo,setAreaInfo] = useState({
+    lat:'33.4890113',
+    lon:'126.4983023'
+  })
+
+  console.log(areaInfo)
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <AreaSearch setAreaInfo={setAreaInfo} />
+    {areaInfo && <OpenWeather
+      forecast="5days"
+      apikey="1f8ed734823781216a3c57170a63d19b"
+      type="geo"
+      lat={areaInfo.lat}
+      lon={areaInfo.lon}
+    />}
     </div>
   );
 }
