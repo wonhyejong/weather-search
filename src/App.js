@@ -9,7 +9,6 @@ function App() {
     lon:'126.4983023'
   })
 
-  console.log(areaInfo)
   return (
     <div className="App">
     <AreaSearch setAreaInfo={setAreaInfo} />

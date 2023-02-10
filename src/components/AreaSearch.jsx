@@ -13,10 +13,10 @@ const AreaSearch = ({setAreaInfo}) => {
     const searchAddress = async(address) => {
         try{
             const response = await Geocode.fromAddress(address);
-            console.log(response)
+
             if (response.results.length) {
                 const { lat, lng } = response.results[0].geometry.location;
-                setAreaInfo({lat:String(lat),lon:String(lng)})
+                setAreaInfo({ lat: String(lat), lon: String(lng) })
             }
         }catch(err){
             console.log(err)
@@ -25,6 +25,9 @@ const AreaSearch = ({setAreaInfo}) => {
 
     const onSubmit = (e) => {
         e.preventDefault();
+        if(setAreaInfo !== undefined){
+            setAreaInfo(undefined)
+        }
         searchAddress(inputValue)
         setInputValue('');
     }
